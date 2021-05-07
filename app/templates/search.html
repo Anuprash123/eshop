@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<section class="fruit_section layout_padding">
+    {% if sr %}
+        {% for s in sr %}
+    <div class="container">
+      <div class="heading_container">
+        <h2>
+          Fresh Fruit
+        </h2>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="fruit_container">
+        <div class="box">
+          <img src="{{s.image.url}}" alt="">
+          <div class="link_box">
+            <h5>
+              {{s.name}}
+            </h5>
+            <a href="{% url 'detail' s.id %}">
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor  %}
+    {% endif %}
+  </section>
+
+
+{% endblock %}

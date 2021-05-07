@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+ <div class="container-fluid">
+     <div class="row my-5">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <h2>Welcome {{user.username}}</h2><br>
+            <h3 class="btn {{active}}">Profile</h3><br>
+            <a href="{% url 'address' %}"><h3>Address</h3></a>
+
+        </div>
+        <div class="col-sm-8 col-md-4 col-lg-6 ">
+                    {% for message in messages %}
+                        <p class="alert alert-success">{{message}}</p>
+                    {% endfor %}
+                    <form action="" method="post">
+                   {% csrf_token %}
+                  <div class="form-group">
+                    <label for="FirstInput">Name</label>
+                      <input type="text" class="form-control" id="FirstInput" name="cname" placeholder="" value="" contenteditable="true">
+                  </div>
+                  <div class="form-group">
+                    <label for="MobileInput">Mobile No</label>
+                       <input type="text" class="form-control" id="MobileInput" name="mobno" placeholder="" value="" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="StateInput">State</label>
+                       <input type="text" class="form-control" id="StateInput" name="cstate" placeholder="" value="" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="CityInput">City</label>
+                       <input type="text" class="form-control" id="CityInput" name="ccity" placeholder="" value="" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="ZipcodeInput">Zip code</label>
+                       <input type="text" class="form-control" id="ZipcodeInput" name="czip" placeholder="" value="" required>
+                  </div>
+                        <div class="form-group">
+                      <label for="AddInput">Address</label>
+                      <textarea class="form-control" id="AddInput" name="cAdd" placeholder="" ></textarea>
+                  </div>
+
+                   <input type="submit" class="btn btn-primary" value="Submit">
+                </form>
+             </div>
+
+    </div>
+
+</div>
+{% endblock %}

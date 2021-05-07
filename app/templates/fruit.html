@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+  <!-- fruit section -->
+
+  <section class="fruit_section layout_padding">
+    <div class="container">
+      <div class="heading_container">
+        <hr>
+        <h2>
+          Fresh Fruit
+        </h2>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+
+      <div class="fruit_container">
+         {% for i in fruits %}
+        <div class="box">
+          <img src="{{i.image.url}}" alt="">
+          <div class="link_box">
+            <h5>
+              {{i.name}}
+            </h5>
+            <a href="{% url 'detail' i.id %}">
+              Buy Now
+            </a>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <!-- end fruit section -->
+
+
+{% endblock %}

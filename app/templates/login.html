@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3 class="text-center alert alert-danger my-3">Login page</h3>
+    </div>
+</div>
+<section class="contact_section layout_padding">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="offset-lg-2 col-md-10 offset-md-1">
+          <div class="heading_container">
+          </div>
+        </div>
+      </div>
+
+      <div class="layout_padding2-top">
+        <div class="row">
+          <div class="col-lg-4 offset-lg-2 col-md-5 offset-md-1">
+            <form action="" method="post">
+            {% csrf_token %}
+                {% if form.non_field_errors %}
+                    {% for error in form.non_field_errors %}
+                        <p class="er">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+            {% for fm in form %}
+                {{fm.label_tag}} {{fm}}<br> {{fm.errors|striptags}}<br><br>
+            {% endfor %}
+                <input type="submit" value="submit" class="btn btn-primary">
+            </form>
+
+          </div>
+          <div class="col-md-6 px-0">
+            <div class="map_container">
+              <div class="map-responsive">
+                  <h3 class="alert alert-primary">Are You New Member ? Please Signup First</h3>
+                <a href="{% url 'signup' %}" ><button type="submit" class="btn btn-primary" value="submit">Sign Up</button></a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+{% endblock %}

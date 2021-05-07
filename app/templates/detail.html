@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container">
+    <div class="row my-5">
+        <div class="col-sm-6">
+            <img src="{{detail.image.url}}">
+        </div>
+        <div class=" col-sm-6">
+                <table class="table table-bordered bordered-success bg-dark text-light">
+                  <thead>
+                    <tr>
+                      <th scope="col">Product</th>
+                      <td>{{ detail.name }}</td>
+                    </tr>
+                    <tr>
+                      <th scope="col">Price/kg</th>
+                      <td>Rs. {{ detail.price_per_kg }}/- Only</td>
+                    </tr>
+                  </thead>
+                </table>
+                {% if request.user.is_authenticated %}
+                {% if item_already_in_cart %}
+                <a href="{% url 'showcart' %}" class="btn btn-warning shadow px-5 py-2 ms-4">Go to Cart</a>
+                {% else %}
+            <form action="/add_cart" >
+                {% csrf_token %}
+                <input type="hidden" value="{{detail.id}}" name="pid">
+                <button type="submit" class="btn btn-primary" >Add To Cart</button>
+            </form>
+            {% endif %}
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+            <form action="/add_cart" >
+                {% csrf_token %}
+                <input type="hidden" value="{{detail.id}}" name="pid">
+                <button type="submit" class="btn btn-primary" >Add To Cart</button>
+            </form>
+            {% endif %}
+             <h2 class="my-3">Discription</h2>
+                <p>1. Its Fresh Fruit</p>
+                <p>2. Delivery is free</p>
+                <p>3. Delivery is under 1 hour</p>
+              </div>
+            </div>
+          </div>
+
+{% endblock %}

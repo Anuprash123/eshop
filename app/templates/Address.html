@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="container-fluid">
+     <div class="row my-5">
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <h2>Welcome {{user.username}}</h2><br>
+            <a href="{% url 'profile' %}"><h3>Profile</h3><br></a>
+            <h3 class="btn {{active}}">Address</h3>
+
+        </div>
+
+    <div class="col-sm-4 col-md-4 col-lg-4 ">
+        {% for Add in add %}
+        <div class="card " style="width:18rem;">
+        <div class="card-body ">
+            <h4 class="">Address {{forloop.counter}}</h4>
+            <h5 class="card-title fw-bold"></h5>
+            <p class="card-text">{{Add.name}},{{Add.state}},{{Add.city}}</p>
+            <p class="card-text">{{Add.addres_s}}, {{Add.zipcode}}</p>
+        </div>
+            {% endfor %}
+
+
+        </div>
+
+    </div>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="row">
+    <div class="col-sm-12 my-3">
+        <h3 class="text-center alert alert-danger"> Shopping Cart</h3>
+    </div>
+        <div class="container-fluid">
+                <div class="row my-5">
+                    <div class="col-sm-9 col-md-6 col-lg-8">
+                        {% for cart in carts %}
+                        <table class="table table-success">
+                            <thead>
+                                <tr>
+                                    <th scope="row"></th>
+                                    <th>Product </th>
+                                    <th>Name</th>
+                                    <th>Quantity </th>
+                                    <th>Price/Kg</th>
+                                </tr>
+                            </thead>
+                        <tbody>
+                                <tr>
+                                    <td scope="col"></td>
+                                    <td><img src="{{cart.fruits.image.url}}" height="100" width="100">
+                                        <button type="submit" class="bg-dark text-light remove-cart" pid="{{cart.fruits.id}}">Remove</button></td>
+                                    <td>{{cart.fruits.name}}</td>
+                                    <td><a class="minus-cart btn" type="submit" pid="{{cart.fruits.id}}"><i class="fas fa-minus-square"></i></a>
+                                        {{cart.quantity}} Kg <a class="plus-cart btn"  type="submit" pid="{{cart.fruits.id}}"><i class="fas fa-plus-square"></i></a></td>
+                                    <td>{{cart.fruits.price_per_kg}}</td>
+                                </tr>
+                        </tbody>
+                        </table>
+                          {% endfor %}
+                    </div>
+                    <div class="col-sm-3 col-md-2 col-lg-4">
+                       <table class="table table-warning">
+                           <thead>Total Amount</thead>
+                           <tbody>
+                           <tr><td><p id="amount">amount-Rs.{{amount}}</p></td></tr>
+                           <tr><td><p>Shipping Charge Rs. 70</p></td></tr>
+                           <tr><td><p id="totalamount">totalamount-Rs.{{totalamount}}</p></td></tr>
+
+                           </tbody>
+                       </table>
+                        <a href="{% url 'checkout' %}"><button type="submit" class="btn btn-primary">Place Order</button></a>
+
+                    </div>
+
+                </div>
+                </div>
+
+       </div>
+
+
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="row my-3">
+    <div class="col-sm-12">
+        <h4 class="alert alert-danger text-center">Order Detail</h4>
+    </div>
+</div>
+ <div class="container-fluid">
+     <div class="row my-5">
+         <div class="col-sm-6 col-md-6 col-lg-5">
+             {% for cart in carts %}
+            <div class="card " style="width:28rem;">
+                <div class="card-body ">
+                    <h5 class="card-title fw-bold">Product: {{cart.fruits.name}}</h5>
+                    <p class="card-text">quantity-{{cart.quantity}}kg</p>
+                </div>
+
+
+            </div>
+             {% endfor %}
+             <p class="alert alert-warning">Shipping Charge Rs.70 + totalamount = Rs.{{totalamount}}</p>
+         </div>
+         <div class="col-sm-6 col-md-4 col-lg-4 ">
+             <form action="/booking">
+
+                 {% for Add in add %}
+
+                <div class="card " style="width:18rem;">
+                <div class="card-body ">
+                    <h5 class="card-title fw-bold"></h5>
+                    <p class="card-text">{{Add.name}},{{Add.state}},{{Add.city}}</p>
+                    <p class="card-text">{{Add.addres_s}}, {{Add.zipcode}}</p>
+                </div>
+                </div>
+
+                <div class="form-check mt-2 mb-5">
+                    <input class="form-check-input" type="radio"  name="bookid" id="bookadd{{forloop.counter}}" value="{{Add.id}}" required>
+                    <label class="form-check-label fw-bold" >Address:{{forloop.counter}}</label>
+                </div>
+                 {% endfor %}
+                 <div class="text-end">
+                     <button type="submit" class="btn btn-warning mt-3">Continue</button>
+                 </div>
+             </form>
+
+
+             </div>
+         </div>
+     </div>
+ </div>
+{% endblock %}
